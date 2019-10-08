@@ -40,7 +40,20 @@ router.post('/',  async (req, res) => {
 
 // Update one subscriber
 router.patch('/:id', getSubscriber, (req, res) => {
+    if (req.body.name!=null){
+        res.subscriber.name = req.body.name
+    }
+    if(req.body.subscribedChannel!=null){
+        res.subscriber.subscribedChannel = req.body.subscribedChannel
+    }
     
+    try{
+        const updatedSubscriber = await res.subsriber.save()
+        res.json(updatedSubscriber)
+    }
+    catch(err){
+        res.status(400).json({message: err.message})
+    }
 })
 
 
@@ -56,7 +69,7 @@ router.delete('/:id', getSubscriber, (req, res) => {
     }
 })
 
-
+// Middleware function for gettig subscriber object by ID
 async function getSubscriber(req,res, next){
     try{
         subscriber = await Subscriber.findById(req.params.id)
