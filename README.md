@@ -1,11 +1,11 @@
 # node-express-rest-API
 
 
-#Purpose
+### Purpose
 
 This is a test project to get a REST API up and running with Node, Express and MongoDB
 
-#Run
+### Run
 
 - Run `npm install` to install node modules
 - Start MongoDB database using the command below:
