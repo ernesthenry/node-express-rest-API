@@ -13,5 +13,9 @@ This is a test project to get a REST API up and running with Node, Express and M
     sudo service mongod start
 
 ```
-- Run `npm run devStart` to start the server
+- Run the command below to start the server:
+
+```
+    npm run devStart
+```
 - Use the `routes.rest` file to make test calls to the database
