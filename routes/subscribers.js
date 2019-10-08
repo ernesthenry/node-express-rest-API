@@ -17,8 +17,8 @@ router.get('/', async (req, res) => {
 })
 
 //Get one subscriber
-router.get('/:id', (req, res) => {
-    
+router.get('/:id', getSubscriber, (req, res) => {
+    res.json(res.subscriber)
 })
 
 // Create one subscriber
@@ -39,16 +39,30 @@ router.post('/',  async (req, res) => {
 });
 
 // Update one subscriber
-router.patch('/:id', (req, res) => {
+router.patch('/:id', getSubscriber, (req, res) => {
     
 })
 
 
 // Delete one subscriber
-router.delete('/:id', (req, res) => {
+router.delete('/:id', getSubscriber, (req, res) => {
     
 })
 
+
+async function getSubscriber(req,res, next){
+    try{
+        subscriber = await Subscriber.findById(req.params.id)
+        if(subscriber==null){
+            return res.status(400).json("Can't find subscriber")
+        }
+    }
+    catch(err){
+        return res.status(500).json({message:err.message})
+    }
+    res.subscriber = subscriber
+    next()
+}
 
 
 module.exports = router
